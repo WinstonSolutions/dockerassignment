@@ -16,16 +16,16 @@ This document provides instructions on how to run the "Codin 1" website using Do
 2.  **Build the Docker Image:**
 
      ```bash
-     docker build -t lastName_firstName_coding_assignment11 .
+     docker build -t myfirstimage .
      ```
-     (Replace `lastName_firstName` with your last and first name in pinyin)
+     
 
 3.  **Run the Docker Container:**
 
      ```bash
-     docker run -d -p 7775:7775 --name lastName_firstName_coding_assignment11 lastName_firstName_coding_assignment11
+     docker run -d -p 7775:7775 --name zhao_wentao_coding_assignment11 myfirstimage
      ```
-     (Replace `lastName_firstName` with your last and first name in pinyin)
+     
 
 4.  **Access the Website:**
 

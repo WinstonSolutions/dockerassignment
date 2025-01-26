@@ -1,29 +1,29 @@
-# 使用 Node.js 官方镜像作为基础 (可以尝试 node:18 如果遇到问题)
+# Use official Node.js image as base (try node:18 if encountering issues)
 FROM node:18-alpine
 
-# 设置工作目录 (保留 /zhao_wentao_site)
+# Set working directory (keep /zhao_wentao_site)
 WORKDIR /zhao_wentao_site
 
-# 复制 package 文件和 lock 文件
+# Copy package files and lock file
 COPY package.json package-lock.json ./
 
-# 安装依赖
+# Install dependencies
 RUN npm install
 
-# 复制所有源代码
+# Copy all source code
 COPY . .
 
-# 构建生产版本 (构建产物在 dist 目录)
+# Build production version (build output in dist directory)
 RUN npm run build
 
-# 暴露端口 7775
+# Expose port 7775
 EXPOSE 7775
 
-#  选择使用其中一个CMD指令：
+# Choose one of these CMD instructions:
 # -------------------------------------------------------------------------
-# 开发模式启动：
-#  * 用于开发环境, 提供热更新
-#  * 需要在 docker run 命令中使用端口映射和卷挂载
-#  * 例如：docker run -p 7775:7775 -v $(pwd):/zhao_wentao_site your-image-name
+# Start in development mode:
+#  * For development environment, provides hot-reload
+#  * Requires port mapping and volume mount in docker run command
+#  * Example: docker run -p 7775:7775 -v $(pwd):/zhao_wentao_site your-image-name
 #
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "7775"]
